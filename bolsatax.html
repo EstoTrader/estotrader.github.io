@@ -1,3 +1,12 @@
+
+// You can get url_string from window.location.href if you want to work with
+// the URL of the current page
+var url_string = "http://www.example.com/t.html?a=1&b=3&c=m2-m3-m4-m5"; 
+var url = new URL(url_string);
+var c = url.searchParams.get("c");
+console.log(c);
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 	<head>
@@ -6,6 +15,26 @@
 	<title>Query string</title>
 	</head>
 	<body>
+    <script>
+	function getUrlVars() {
+    	var vars = {};
+    	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+    	function(m,key,value) {
+      	vars[key] = value;
+    	});
+    return vars;
+    }
+	var fType = getUrlVars()["type"];
+	p = document.createElement("p");
+ 	p.innerHTML = "Your name is "+lengthOfName+" characters long.";
+  	document.body.appendChild(p);
+	var fType = getUrlVars()["type"];
+	</script>
+  
+    
+    document.getElementById('message').innerHTML = lengthOfName;
+    <p id='message'></p>
+    
 
 	<?php
 
