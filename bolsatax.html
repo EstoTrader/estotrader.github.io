@@ -1,12 +1,4 @@
 
-// You can get url_string from window.location.href if you want to work with
-// the URL of the current page
-var url_string = "http://www.example.com/t.html?a=1&b=3&c=m2-m3-m4-m5"; 
-var url = new URL(url_string);
-var c = url.searchParams.get("c");
-console.log(c);
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 	<head>
@@ -14,34 +6,46 @@ console.log(c);
 	<head>
 	<title>Query string</title>
 	</head>
-	<body>
     <script>
-	function getUrlVars() {
-    	var vars = {};
-    	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
-    	function(m,key,value) {
-      	vars[key] = value;
-    	});
-    return vars;
-    }
-	var fType = getUrlVars()["type"];
-	p = document.createElement("p");
- 	p.innerHTML = "Your name is "+lengthOfName+" characters long.";
-  	document.body.appendChild(p);
-	var fType = getUrlVars()["type"];
-	</script>
-  
+	
+	//ssuming that our URL is https://example.com/?product=shirt&color=blue&newuser&size=m
+	const queryString = window.location.search;
+	console.log(queryString);
+	// ?product=shirt&color=blue&newuser&size=m
+	const urlParams = new URLSearchParams(queryString);
+	const product = urlParams.get('product')
+	console.log(product);
+
+	</script>  
     
-    document.getElementById('message').innerHTML = lengthOfName;
-    <p id='message'></p>
+	<body>
+     <h1>
+      the value for number is:
+      <script type="text/javascript">
+        document.write(product)
+      </script>
+    </h1>
     
+ <!-- ejemplo base -->
+ <input type="text" id="mytext">
+  <script type="text/javascript">
+    var msg = "Hello World!";
+    document.getElementById("mytext").value = msg;
+  </script>
+    
+    <form action="/url" method="GET">
+        <p>Please enter some text below:</p>
+      	<!-- variable product en el form -->
+         <input type="text" id="2mytext">
+           <script type="text/javascript">
 
-	<?php
+    		var msg = "Hello World!";
+   			 document.getElementById("2mytext").value = product;
 
-	// The value of the variable name is found
-	echo "<h1>Hello " . $_GET["name"] . "</h1>";
-
-	?>
-
+  		</script>
+      	
+    </form>
+    
+    
 	</body>
 </html>
